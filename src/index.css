@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  body {
+    @apply bg-background text-text-primary antialiased;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl;
+  }
+  
+  .metric-card {
+    @apply bg-card p-6 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors;
+  }
+  
+  .chart-container {
+    @apply bg-card p-6 rounded-lg border border-gray-700;
+  }
+  
+  .table-header {
+    @apply px-4 py-3 text-left text-text-secondary text-sm font-medium cursor-pointer hover:text-text-primary transition-colors;
+  }
+  
+  .table-cell {
+    @apply px-4 py-3 text-text-primary;
+  }
+  
+  .button-primary {
+    @apply bg-primary hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+  
+  .button-secondary {
+    @apply bg-slate-700 text-text-secondary hover:bg-slate-600 hover:text-text-primary px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-500;
+}
+
+/* Recharts override for dark theme */
+.recharts-cartesian-axis-tick-value {
+  fill: #94A3B8 !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #374151 !important;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
