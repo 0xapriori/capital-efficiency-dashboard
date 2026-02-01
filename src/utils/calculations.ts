@@ -33,7 +33,8 @@ export function calculateMetrics(
       tvlTurnover: dexVolume24h / tvl,
       feeYield: tvl > 0 ? (fees24h / tvl) * 365 * 100 : 0,
       volumePerTvl: dexVolume24h / tvl,
-      stablecoinUtilization: tvl > 0 ? (stablecoinMcap / tvl) * 100 : 0
+      stablecoinUtilization: tvl > 0 ? (stablecoinMcap / tvl) * 100 : 0,
+      tvlToVolumeRatio: dexVolume24h > 0 ? tvl / dexVolume24h : 0
     };
     
     if (validateChainData(chainMetrics)) {

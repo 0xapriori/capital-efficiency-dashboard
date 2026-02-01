@@ -36,10 +36,12 @@ export function getEfficiencyColor(turnover: number): string {
   return "#ef4444"; // red-500
 }
 
-export function formatValue(value: number, format: "text" | "currency" | "decimal2" | "percent"): string {
+export function formatValue(value: number, format: "text" | "currency" | "decimal1" | "decimal2" | "percent"): string {
   switch (format) {
     case "currency":
       return formatCurrency(value);
+    case "decimal1":
+      return formatDecimal(value, 1);
     case "decimal2":
       return formatDecimal(value, 2);
     case "percent":

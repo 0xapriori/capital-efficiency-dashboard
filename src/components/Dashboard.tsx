@@ -134,6 +134,21 @@ export default function Dashboard() {
           />
         </div>
 
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+          <BarChart
+            data={filteredData}
+            metric="tvlToVolumeRatio"
+            limit={10}
+            title="TVL/Volume Ratio (Lower = More Efficient)"
+          />
+          <BarChart
+            data={filteredData}
+            metric="tvlTurnover"
+            limit={10}
+            title="TVL Turnover Ranking"
+          />
+        </div>
+
         <div className="mb-8">
           <DataTable
             data={filteredData}

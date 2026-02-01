@@ -78,6 +78,7 @@ export interface ChainMetrics {
   feeYield: number;
   volumePerTvl: number;
   stablecoinUtilization: number;
+  tvlToVolumeRatio: number;
 }
 
 export interface DashboardState {
@@ -128,7 +129,7 @@ export interface BarChartProps {
 export interface TableColumn {
   key: keyof ChainMetrics;
   label: string;
-  format: "text" | "currency" | "decimal2" | "percent";
+  format: "text" | "currency" | "decimal1" | "decimal2" | "percent";
   width: string;
   tooltip?: string;
 }
@@ -142,36 +143,43 @@ export const VALIDATION_RULES = {
 } as const;
 
 export const TABLE_COLUMNS: TableColumn[] = [
-  { key: "chain", label: "Chain", format: "text", width: "15%" },
-  { key: "tvl", label: "TVL", format: "currency", width: "12%" },
-  { key: "stablecoinMcap", label: "Stable Mcap", format: "currency", width: "12%" },
-  { key: "dexVolume24h", label: "DEX Vol 24h", format: "currency", width: "12%" },
+  { key: "chain", label: "Chain", format: "text", width: "13%" },
+  { key: "tvl", label: "TVL", format: "currency", width: "10%" },
+  { key: "stablecoinMcap", label: "Stable Mcap", format: "currency", width: "10%" },
+  { key: "dexVolume24h", label: "DEX Vol 24h", format: "currency", width: "10%" },
   { 
     key: "stablecoinTurnover", 
     label: "SC Turnover", 
     format: "decimal2", 
-    width: "12%",
+    width: "10%",
     tooltip: "DEX Volume / Stablecoin Mcap. Higher = more active trading per dollar of stablecoins"
+  },
+  {
+    key: "tvlToVolumeRatio",
+    label: "TVL/Vol Ratio",
+    format: "decimal1",
+    width: "10%",
+    tooltip: "TVL / DEX Volume. Lower = more efficient capital utilization"
   },
   {
     key: "tvlTurnover",
     label: "TVL Turnover",
     format: "decimal2",
-    width: "12%",
+    width: "10%",
     tooltip: "DEX Volume / TVL. How many times TVL turns over daily"
   },
   {
     key: "feeYield",
     label: "Fee APY",
     format: "percent",
-    width: "12%",
+    width: "10%",
     tooltip: "Annualized fees as % of TVL"
   },
   {
     key: "stablecoinUtilization",
     label: "Stable/TVL",
     format: "percent",
-    width: "13%",
+    width: "12%",
     tooltip: "What % of TVL is stablecoins"
   },
 ];

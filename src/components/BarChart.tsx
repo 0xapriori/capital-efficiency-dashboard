@@ -5,8 +5,15 @@ import { formatValue, getEfficiencyColor } from '../utils/formatters';
 
 export default function EfficiencyBarChart({ data, metric, limit = 15, title }: BarChartProps) {
   const chartData = useMemo(() => {
+    // For TVL/Volume ratio, lower is better, so sort ascending
+    const shouldSortAscending = metric === 'tvlToVolumeRatio';
+    
     return [...data]
-      .sort((a, b) => Number(b[metric]) - Number(a[metric]))
+      .sort((a, b) => {
+        const aVal = Number(a[metric]);
+        const bVal = Number(b[metric]);
+        return shouldSortAscending ? aVal - bVal : bVal - aVal;
+      })
       .slice(0, limit)
       .map(item => ({
         chain: item.chain,
@@ -22,7 +29,7 @@ export default function EfficiencyBarChart({ data, metric, limit = 15, title }: 
         <div className="bg-card p-3 rounded-lg border border-gray-600 shadow-lg">
           <p className="text-text-primary font-semibold">{data.chain}</p>
           <p className="text-text-secondary">
-            {title}: <span className="font-bold">{formatValue(data.value, 'decimal2')}</span>
+            {title}: <span className="font-bold">{formatValue(data.value, metric === 'tvlToVolumeRatio' ? 'decimal1' : 'decimal2')}</span>
           </p>
         </div>
       );

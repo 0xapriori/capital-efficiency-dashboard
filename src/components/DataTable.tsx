@@ -93,6 +93,9 @@ export default function DataTable({ data, sortColumn, sortDirection, onSort }: D
                   </span>
                 </td>
                 <td className="px-4 py-3 text-text-primary font-mono">
+                  {formatValue(metrics.tvlToVolumeRatio, 'decimal1')}
+                </td>
+                <td className="px-4 py-3 text-text-primary font-mono">
                   {formatValue(metrics.tvlTurnover, 'decimal2')}
                 </td>
                 <td className="px-4 py-3 text-text-primary font-mono">
